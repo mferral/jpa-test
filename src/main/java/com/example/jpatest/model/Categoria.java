@@ -4,6 +4,8 @@ package com.example.jpatest.model;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity(name = "categoria")
 @Table(name = "categoria")
 public class Categoria {
@@ -29,16 +31,17 @@ public class Categoria {
     public void setTitle(String title) {
         this.title = title;
     }
+    
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SubCategoria> subCategorias;
 
-    // @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
-    // private List<SubCategoria> subCategorias;
+    @JsonManagedReference
+    public List<SubCategoria> getSubCategorias() {
+        return this.subCategorias;
+    }
 
-    // public List<SubCategoria> getSubCategorias() {
-    //     return this.subCategorias;
-    // }
-
-    // public void setSubCategorias(List<SubCategoria> subCategorias) {
-    //     this.subCategorias = subCategorias;
-    // }
+    public void setSubCategorias(List<SubCategoria> subCategorias) {
+        this.subCategorias = subCategorias;
+    }
 
 }

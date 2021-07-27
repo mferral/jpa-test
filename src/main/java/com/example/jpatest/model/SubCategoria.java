@@ -1,10 +1,19 @@
 package com.example.jpatest.model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+// import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "sub_categoria")
-public class SubCategoria {
+public class SubCategoria{
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -17,10 +26,16 @@ public class SubCategoria {
         this.id = id;
     }
 
-    @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_CATEGORIA"), nullable=true)    
+    // @JoinColumn(foreignKey = @ForeignKey(name = "FK_CATEGORIA"), nullable=true)    
+    // @JsonBackReference   
+    // @JsonIgnore
+    // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    // @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
+    @JoinColumn(name = "categoria_id", nullable=false) 
     private Categoria categoria;
 
+    @JsonBackReference
     public Categoria getCategoria() {
         return this.categoria;
     }
