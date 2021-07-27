@@ -1,8 +1,6 @@
 package com.example.jpatest.projections;
-import javax.persistence.*;
-import com.example.jpatest.model.Categoria;
+// import com.example.jpatest.model.Categoria;
 
-// @Entity
 public class SubCategoriaClass{
 	private long id;
     private String title;

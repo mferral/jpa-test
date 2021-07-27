@@ -1,15 +1,15 @@
 package com.example.jpatest.model;
 
-import java.io.Serializable;
+// import java.io.Serializable;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+// import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+// import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-// import com.fasterxml.jackson.annotation.JsonBackReference;
+// // import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "sub_categoria")
