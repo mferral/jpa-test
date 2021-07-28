@@ -43,5 +43,4 @@ public class Categoria {
     public void setSubCategorias(List<SubCategoria> subCategorias) {
         this.subCategorias = subCategorias;
     }
-
 }
