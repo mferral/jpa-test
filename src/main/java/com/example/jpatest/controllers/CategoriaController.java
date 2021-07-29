@@ -2,6 +2,7 @@ package com.example.jpatest.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Map;
 import com.example.jpatest.model.Categoria;
 import com.example.jpatest.projections.CategoriaCustom;
 import com.example.jpatest.repository.CategoriaRepository;
@@ -68,6 +69,21 @@ public class CategoriaController {
         }
     }
 
+    @GetMapping("/categorias4")
+    public ResponseEntity<List<Map<String, Object>>> getAllCategoriasFunc() {
+        try {
+            List<Map<String, Object>> categorias = new ArrayList<Map<String, Object>>();
+
+            categoriaRepository.findCategoriasFunc().forEach(categorias::add);
+            if (categorias.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(categorias, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/categoria/{id}")
     public ResponseEntity<Categoria> getTutorialById(@PathVariable("id") long id) {
         Optional<Categoria> data = categoriaRepository.findById(id);
@@ -84,7 +100,7 @@ public class CategoriaController {
         if (data.isPresent()) {
             return new ResponseEntity<>(data.get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 

@@ -7,6 +7,7 @@ import com.example.jpatest.model.Categoria;
 import com.example.jpatest.projections.CategoriaCustom;
 import java.util.Optional;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
@@ -16,6 +17,9 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
     @Query(value = "SELECT * FROM list_categorias();", nativeQuery = true)
     List<CategoriaCustom> findCategoriasObject();
+
+    @Query(value = "SELECT * FROM list_categorias();", nativeQuery = true)
+    List<Map<String, Object>> findCategoriasFunc();
 
     @Query(value = "SELECT * FROM get_categoria(:id);", nativeQuery = true)
     Optional<CategoriaCustom> findCategoriaById(@Param("id") Integer id);
