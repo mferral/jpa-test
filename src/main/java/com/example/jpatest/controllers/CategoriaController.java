@@ -1,14 +1,16 @@
 package com.example.jpatest.controllers;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 import com.example.jpatest.model.Categoria;
+import com.example.jpatest.projections.CategoriaCustom;
 import com.example.jpatest.repository.CategoriaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,56 @@ public class CategoriaController {
             return new ResponseEntity<>(categorias, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/categorias2")
+    public ResponseEntity<List<Categoria>> getAllCategorias() {
+        try {
+            List<Categoria> categorias = new ArrayList<Categoria>();
+
+            categoriaRepository.findCategorias().forEach(categorias::add);
+            if (categorias.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(categorias, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/categorias3")
+    public ResponseEntity<List<CategoriaCustom>> getAllCategoriasQuery() {
+        try {
+            List<CategoriaCustom> categorias = new ArrayList<CategoriaCustom>();
+
+            categoriaRepository.findCategoriasObject().forEach(categorias::add);
+            if (categorias.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(categorias, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/categoria/{id}")
+    public ResponseEntity<Categoria> getTutorialById(@PathVariable("id") long id) {
+        Optional<Categoria> data = categoriaRepository.findById(id);
+        if (data.isPresent()) {
+            return new ResponseEntity<>(data.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/categoria2/{id}")
+    public ResponseEntity<CategoriaCustom> getCatById(@PathVariable("id") int id) {
+        Optional<CategoriaCustom> data = categoriaRepository.findCategoriaById(id);
+        if (data.isPresent()) {
+            return new ResponseEntity<>(data.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
