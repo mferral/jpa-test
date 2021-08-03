@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/api")
@@ -25,6 +26,7 @@ public class CategoriaController {
     CategoriaRepository categoriaRepository;
 
     @GetMapping("/categorias")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<List<Categoria>> getAllTutorials(@RequestParam(required = false) String title) {
         try {
             List<Categoria> categorias = new ArrayList<Categoria>();
