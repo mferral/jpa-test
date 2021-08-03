@@ -2,7 +2,6 @@ package com.example.jpatest.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.jpatest.model.SubCategoria;
 import com.example.jpatest.projections.SubCategoriaCustom;
 import com.example.jpatest.repository.SubCategoriaRepository;
 
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.jpatest.models.SubCategoria;
 import com.example.jpatest.projections.SubCategoriaClass;
 
 @RestController

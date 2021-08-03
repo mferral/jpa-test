@@ -2,9 +2,9 @@ package com.example.jpatest.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.jpatest.models.Tutorial;
 
-import com.example.jpatest.model.Tutorial;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
     List<Tutorial> findByPublished(boolean published);

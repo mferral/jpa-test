@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Map;
-import com.example.jpatest.model.Categoria;
+
+import com.example.jpatest.models.Categoria;
 import com.example.jpatest.projections.CategoriaCustom;
 import com.example.jpatest.repository.CategoriaRepository;
 

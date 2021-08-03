@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 // import java.io.Serializable;
 import java.util.List;
 
-import com.example.jpatest.model.SubCategoria;
 import com.example.jpatest.projections.SubCategoriaCustom;
+import com.example.jpatest.models.SubCategoria;
 import com.example.jpatest.projections.SubCategoriaClass;
 
 @Repository

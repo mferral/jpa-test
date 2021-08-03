@@ -3,7 +3,7 @@ package com.example.jpatest.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.jpatest.model.Tutorial;
+import com.example.jpatest.models.Tutorial;
 import com.example.jpatest.repository.TutorialRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.example.jpatest.model;
+package com.example.jpatest.models;
 
 import javax.persistence.*;
 

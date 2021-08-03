@@ -1,4 +1,4 @@
-package com.example.jpatest.model;
+package com.example.jpatest.models;
 // import java.util.HashSet;
 // import java.util.Set;
 import java.util.List;

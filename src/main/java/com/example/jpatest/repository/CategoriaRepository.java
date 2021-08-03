@@ -3,7 +3,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import com.example.jpatest.model.Categoria;
+
+import com.example.jpatest.models.Categoria;
 import com.example.jpatest.projections.CategoriaCustom;
 import java.util.Optional;
 import java.util.List;
