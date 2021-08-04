@@ -5,8 +5,10 @@ import java.util.Optional;
 import java.util.Map;
 
 import com.example.jpatest.models.Categoria;
+import com.example.jpatest.models.User;
 import com.example.jpatest.projections.CategoriaCustom;
 import com.example.jpatest.repository.CategoriaRepository;
+import com.example.jpatest.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @RestController
 @RequestMapping("/api")
@@ -25,10 +29,19 @@ public class CategoriaController {
     @Autowired
     CategoriaRepository categoriaRepository;
 
+    @Autowired
+    private UserService userService;
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/categorias")
     public ResponseEntity<List<Categoria>> getAllTutorials(@RequestParam(required = false) String title) {
         try {
             List<Categoria> categorias = new ArrayList<Categoria>();
+            
+            // Get Current User 
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.findOne(username);
+            System.out.println(user.getId());
 
             categoriaRepository.findAll().forEach(categorias::add);
             if (categorias.isEmpty()) {
